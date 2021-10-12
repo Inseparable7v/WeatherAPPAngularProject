@@ -1,0 +1,41 @@
+<div align="center">
+  <h1 id="tableLabel"> Custom <span>Weather forecast</span></h1>
+
+  <p>This component demonstrates fetching data from the server.</p>
+</div>
+<div align="center">
+  <form>
+    <label for="City_Name" >
+      <h6>City Name</h6>
+      <input #CityName type="text" id="City" name="CityName" style="border-radius: 0.3rem 0.4rem;"/>
+    </label>
+    <button style="border-radius: 0.3rem 0.4rem; margin-left: 0.5rem; background-color: aliceblue" id="CityName" (click)="submit(CityName.value)">Submit</button>
+  </form>
+</div>
+<br />
+<p *ngIf="!forecasts" align="center"><em>Waiting for City Name... </em></p>
+<table class='table table-striped table-hover' aria-labelledby="tableLabel" *ngIf="forecasts">
+  <thead style="background-color: skyblue">
+    <tr>
+      <th>Date Time</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th>Current Temp.(C)</th>
+      <th>Temp_Max</th>
+      <th>Temp_Min</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let forecast of forecasts.list | slice:0:10" style="background-color:lightgray; opacity:0.8;">
+    <tr *ngFor="let weather of forecast.weather" scope="row" >
+      <td>{{ forecast.dt_txt }}</td>
+      <td>{{ forecasts.city.name }}</td>
+      <td>{{ weather.main }}</td>
+      <td>{{ forecast.main.temp }}</td>
+      <td>{{ forecast.main.temp_max }}</td>
+      <td>{{ forecast.main.temp_min }}</td>
+      <td ><img [src]= ShowIconImg(forecast.weather[0].icon) width="55" height="40"/></td>
+    </tr>
+  </tbody>
+</table>
+
