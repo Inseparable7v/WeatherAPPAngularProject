@@ -1,4 +1,4 @@
-﻿namespace WeatherAPPAngular.Data.Models
+﻿namespace WeatherAngularAPP.Data.Models
 {
     public class TestModel
     {

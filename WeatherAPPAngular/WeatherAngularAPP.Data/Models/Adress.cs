@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using WeatherAPPAngular.Data.Models;
 
-namespace WeatherAPPAngular.Data.Models
+namespace WeatherAngularAPP.Data.Models
 {
     public class Adress
     {

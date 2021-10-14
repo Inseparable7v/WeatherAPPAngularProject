@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace WeatherAPPAngular.Data.Repositories
+namespace WeatherAngularAPP.Data.Repositories
 {
-    interface IBaseRepository<TEntity>  where TEntity :class
+    public interface IBaseRepository<TEntity>  where TEntity :class
     {
         void Delete(TEntity entityToDelete);
-        void Delete(object id);
-        IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
-        TEntity GetByID(object id);
-        void Insert(TEntity entity);
+        Task DeleteAsync(object id);
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIDAsync(object id);
+        Task InsertAsync(TEntity entity);
         void Update(TEntity entityToUpdate);
+        Task SaveAsync();
     }
 }

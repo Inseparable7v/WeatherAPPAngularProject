@@ -1,6 +1,4 @@
-﻿using WeatherAPPAngular.Data.Models;
-
-namespace WeatherAPPAngular.Data.Models
+﻿namespace WeatherAngularAPP.Data.Models
 {
     public class User
     {

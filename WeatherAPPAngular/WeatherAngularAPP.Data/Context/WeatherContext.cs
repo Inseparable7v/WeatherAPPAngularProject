@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WeatherAPPAngular.Data.Models;
+using WeatherAngularAPP.Data.Models;
 
-namespace WeatherAPPAngular.Data.Context
+namespace WeatherAngularAPP.Data.Context
 {
     public class WeatherContext : DbContext
     {

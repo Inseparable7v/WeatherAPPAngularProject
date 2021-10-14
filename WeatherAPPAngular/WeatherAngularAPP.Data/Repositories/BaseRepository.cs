@@ -1,11 +1,12 @@
-﻿using WeatherAPPAngular.Data.Context;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using WeatherAngularAPP.Data.Context;
 
-namespace WeatherAPPAngular.Data.Repositories
+namespace WeatherAngularAPP.Data.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
@@ -50,23 +51,7 @@ namespace WeatherAPPAngular.Data.Repositories
             }
         }
 
-        public virtual TEntity GetByID(object id)
-        {
-            return dbSet.Find(id);
-        }
-
-        public virtual void Insert(TEntity entity)
-        {
-            dbSet.Add(entity);
-        }
-
-        public virtual void Delete(object id)
-        {
-            TEntity entityToDelete = dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-
-        public virtual void Delete(TEntity entityToDelete)
+        public void Delete(TEntity entityToDelete)
         {
             if (context.Entry(entityToDelete).State == EntityState.Detached)
             {
@@ -75,7 +60,33 @@ namespace WeatherAPPAngular.Data.Repositories
             dbSet.Remove(entityToDelete);
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public async Task DeleteAsync(object id)
+        {
+            var entityToDelete = await dbSet.FindAsync(id);
+            Delete(entityToDelete);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await this.dbSet.ToListAsync();
+        }
+
+        public async Task<TEntity> GetByIDAsync(object id)
+        {
+            return await this.dbSet.SingleOrDefaultAsync(x => x.Equals(id));
+        }
+
+        public async Task InsertAsync(TEntity entity)
+        {
+            await dbSet.AddAsync(entity);
+        }
+
+        public async Task SaveAsync()
+        {
+            await this.context.SaveChangesAsync();
+        }
+
+        public void Update(TEntity entityToUpdate)
         {
             dbSet.Attach(entityToUpdate);
             context.Entry(entityToUpdate).State = EntityState.Modified;

@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeatherAPPAngular.Data.Context;
+using WeatherAngularAPP.Data.Context;
+using WeatherAngularAPP.Data.Models;
+using WeatherAngularAPP.Data.Repositories;
+using WeatherAngularAPP.Service.Services;
 
 namespace WeatherAngularAPP
 {
@@ -30,6 +32,10 @@ namespace WeatherAngularAPP
             });
 
             services.AddDbContext<WeatherContext>(con => con.UseSqlServer(Configuration.GetConnectionString("myconn")));
+
+            //DI initialization
+            services.AddScoped<IWeatherService, WeatherService>();
+            services.AddScoped<IBaseRepository<WeatherHistory>, WeatherHistoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
