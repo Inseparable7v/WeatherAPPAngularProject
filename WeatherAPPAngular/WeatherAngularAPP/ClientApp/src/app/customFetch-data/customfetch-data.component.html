@@ -28,12 +28,12 @@
   </thead>
   <tbody *ngFor="let forecast of forecasts.list | slice:0:10" style="background-color:lightgray; opacity:0.8;">
     <tr *ngFor="let weather of forecast.weather" scope="row" >
-      <td>{{ forecast.dt_txt }}</td>
+      <td>{{ forecast.dt_txt | date:'shortime' }}</td>
       <td>{{ forecasts.city.name }}</td>
       <td>{{ weather.main }}</td>
-      <td>{{ forecast.main.temp }}</td>
-      <td>{{ forecast.main.temp_max }}</td>
-      <td>{{ forecast.main.temp_min }}</td>
+      <td>{{ forecast.main.temp | number:'1.0-0' }}</td>
+      <td>{{ forecast.main.temp_max | number:'1.0-0' }}</td>
+      <td>{{ forecast.main.temp_min | number:'1.0-0' }}</td>
       <td ><img [src]= ShowIconImg(forecast.weather[0].icon) width="55" height="40"/></td>
     </tr>
   </tbody>
