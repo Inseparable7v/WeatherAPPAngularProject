@@ -28,7 +28,7 @@
   </thead>
   <tbody *ngFor="let forecast of forecasts.list | slice:0:10" style="background-color:lightgray; opacity:0.8;">
     <tr *ngFor="let weather of forecast.weather" scope="row" >
-      <td>{{ forecast.dt_txt | date:'shortime' }}</td>
+      <td>{{ forecast.dt_txt | date:'EEEE MMM h:mm a'}}</td>
       <td>{{ forecasts.city.name }}</td>
       <td>{{ weather.main }}</td>
       <td>{{ forecast.main.temp | number:'1.0-0' }}</td>
@@ -38,4 +38,5 @@
     </tr>
   </tbody>
 </table>
+<button (click)="ctrl.saveWeather()" class="btn-primary">Save All</button>
 

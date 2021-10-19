@@ -1,9 +1,9 @@
 import { IForecastCity } from "./IForecastCity";
 import { IForecastList } from "./IForecastList";
-import { IForecatsWeather } from "./IForecastWeather";
+import { IForecastWeather } from "./IForecastWeather";
 
-export interface IForecats{
+export interface IForecast{
   list: IForecastList;
   city: IForecastCity;
-  weather: IForecatsWeather;
+  weather: IForecastWeather;
 }

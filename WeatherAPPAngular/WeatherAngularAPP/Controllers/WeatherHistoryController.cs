@@ -36,7 +36,7 @@ namespace WeatherAngularAPP.Controllers
         {
             var historyEntity = await this.weatherService.GetByIdAsync(id);
 
-            if(historyEntity == null) 
+            if(historyEntity == null)
             {
                 var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
                 {
@@ -51,6 +51,12 @@ namespace WeatherAngularAPP.Controllers
         public async Task RemoveHistory(int id)
         {
             await this.weatherService.RemoveHistory(id);
+        }
+
+        [HttpPost]
+        public async Task SaveWeather()
+        {
+
         }
     }
 }

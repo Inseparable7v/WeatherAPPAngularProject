@@ -34,11 +34,11 @@ namespace WeatherAngularAPP.Service.Services
         {
             try
             {
-                return await this._weatherHistoryRepository.GetByIDAsync(id);
+                 return await this._weatherHistoryRepository.GetByIDAsync(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw;
             }
         }
     }

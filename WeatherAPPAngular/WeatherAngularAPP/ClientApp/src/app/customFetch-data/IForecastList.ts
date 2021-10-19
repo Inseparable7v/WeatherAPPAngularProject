@@ -1,6 +1,6 @@
 import { IForecastListMain } from "./IForecastListMain";
 
 export interface IForecastList {
-  dt_text: Date;
+  dt_txt: Date;
   main: IForecastListMain;
 }
