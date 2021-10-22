@@ -1,12 +1,47 @@
+nav {
+  color: lightslategrey;
+  background-color: lightslategrey;
+  margin-bottom:2rem;
+}
+
+a {
+  margin-left: 1.5rem;
+  margin-top: 0.7rem;
+  color: aliceblue;
+  font-size: medium;
+}
+
+li > a:hover {
+  text-decoration: none;
+  color: deepskyblue;
+  font-size: larger;
+}
+
+.tittle {
+  text-decoration: none;
+  margin-left: 0;
+  padding-bottom: 0.9rem;
+  color: deepskyblue;
+  font-size: larger;
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
 
+span{
+    margin-left:auto;
+    color:aliceblue;
+    justify-content:flex-end;
+    align-content:flex-end;
+}
+
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 using WeatherAngularAPP.Data.Context;
 using WeatherAngularAPP.Data.Models;
 using WeatherAngularAPP.Data.Repositories;
@@ -30,6 +31,9 @@ namespace WeatherAngularAPP
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            //services.AddControllers().AddJsonOptions(x =>
+            //   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             services.AddDbContext<WeatherContext>(con => con.UseSqlServer(Configuration.GetConnectionString("myconn")));
 

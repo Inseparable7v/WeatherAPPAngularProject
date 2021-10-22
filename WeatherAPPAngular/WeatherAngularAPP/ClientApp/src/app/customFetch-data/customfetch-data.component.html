@@ -7,9 +7,9 @@
   <form>
     <label for="City_Name" >
       <h6>City Name</h6>
-      <input #CityName type="text" id="City" name="CityName" style="border-radius: 0.3rem 0.4rem;"/>
+      <input #CityName [(ngModel)]="cityName" type="text" id="City" name="CityName" style="border-radius: 0.3rem 0.4rem;"/>
     </label>
-    <button style="border-radius: 0.3rem 0.4rem; margin-left: 0.5rem; background-color: aliceblue" id="CityName" (click)="submit(CityName.value)">Submit</button>
+    <button style="border-radius: 0.3rem 0.4rem; margin-left: 0.5rem; background-color: aliceblue" id="CityName" (click)="submit()">Submit</button>
   </form>
 </div>
 <br />
@@ -27,16 +27,17 @@
     </tr>
   </thead>
   <tbody *ngFor="let forecast of forecasts.list | slice:0:10" style="background-color:lightgray; opacity:0.8;">
-    <tr *ngFor="let weather of forecast.weather" scope="row" >
-      <td>{{ forecast.dt_txt | date:'EEEE MMM h:mm a'}}</td>
-      <td>{{ forecasts.city.name }}</td>
+    <tr *ngFor="let weather of forecast.weather" scope="row">
+      <td>{{ forecast.dt_txt | date:'EEEE MMM h:mm a' }}</td>
+      <td><a [routerLink]="['/weather-detail', forecast.dt_txt]">{{ forecasts.city.name }}</a></td>
       <td>{{ weather.main }}</td>
       <td>{{ forecast.main.temp | number:'1.0-0' }}</td>
       <td>{{ forecast.main.temp_max | number:'1.0-0' }}</td>
       <td>{{ forecast.main.temp_min | number:'1.0-0' }}</td>
-      <td ><img [src]= ShowIconImg(forecast.weather[0].icon) width="55" height="40"/></td>
+      <td><img [src]=ShowIconImg(forecast.weather[0].icon) width="55" height="40" /></td>
     </tr>
   </tbody>
 </table>
-<button (click)="ctrl.saveWeather()" class="btn-primary">Save All</button>
+<button *ngIf="forecasts" (click)="saveWeather()" class="btn-primary">Save All</button>
+
 

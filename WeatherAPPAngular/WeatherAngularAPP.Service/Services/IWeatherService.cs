@@ -10,5 +10,7 @@ namespace WeatherAngularAPP.Service.Services
         Task RemoveHistory(int id);
         Task<IEnumerable<WeatherHistory>> GetHistory();
         Task<WeatherHistory> GetByIdAsync(int id);
+
+        Task SaveAllAsync(ICollection<WeatherHistory> weatherHistories);
     }
 }

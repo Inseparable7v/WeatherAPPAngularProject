@@ -12,8 +12,16 @@ namespace WeatherAngularAPP.Data.Models
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
-        public WeatherHistory WeatherLocation { get; set; }
+        public WeatherLocation WeatherLocation { get; set; }
 
         public ICollection<User> Users { get; set; }
+    }
+
+    public class WeatherHistoryDTO
+    {
+        public int WeatherHistoryId {  get; set; }
+        public DateTime listdt_txt { get; set; }
+        public int temp { get; set; }
+        public string WeatherLocationName { get; set; }
     }
 }

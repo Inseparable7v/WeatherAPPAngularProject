@@ -41,5 +41,15 @@ namespace WeatherAngularAPP.Service.Services
                 throw;
             }
         }
+
+        public async Task SaveAllAsync(ICollection<WeatherHistory> weatherHistories)
+        {
+            if(weatherHistories == null)
+            {
+                throw new ArgumentNullException();
+            }
+            await this._weatherHistoryRepository.SaveAllAsync(weatherHistories);
+            await this._weatherHistoryRepository.SaveAsync();
+        }
     }
 }

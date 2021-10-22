@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,13 +13,12 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace WeatherAngularAPP.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherHistoryController : ControllerBase
+    [RoutePrefix("")]
+    public class WeatherController : Controller
     {
         private IWeatherService weatherService;
 
-        public WeatherHistoryController(IWeatherService weatherService)
+        public WeatherController(IWeatherService weatherService)
         {
             this.weatherService = weatherService;
         }
@@ -36,7 +36,7 @@ namespace WeatherAngularAPP.Controllers
         {
             var historyEntity = await this.weatherService.GetByIdAsync(id);
 
-            if(historyEntity == null)
+            if (historyEntity == null)
             {
                 var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
                 {
@@ -53,10 +53,21 @@ namespace WeatherAngularAPP.Controllers
             await this.weatherService.RemoveHistory(id);
         }
 
-        [HttpPost]
-        public async Task SaveWeather()
+        [HttpGet]
+        [Route("GetAll")]
+        public async Task<IEnumerable<WeatherHistory>> GetAll()
         {
+            return await this.weatherService.GetHistory();
+        }
 
+        [HttpPost]
+        [Route("api/weather/SaveAll")]
+        public async Task SaveAll(string save)
+        {
+            var weatherLocation = new WeatherLocation() { CityName = "Varna" };
+            var entity = new WeatherHistory() { Date = new DateTime(), TemperatureC = 15, WeatherLocation = weatherLocation };
+
+            await this.weatherService.AddHistory(entity);
         }
     }
 }

@@ -47,6 +47,11 @@ namespace WeatherAngularAPP.Data.Repositories
             await dbSet.AddAsync(entity);
         }
 
+        public async Task SaveAllAsync(ICollection<WeatherHistory> entityCollection)
+        {
+            await dbSet.AddRangeAsync(entityCollection);
+        }
+
         public async Task SaveAsync()
         {
             await this._weatherContext.SaveChangesAsync();

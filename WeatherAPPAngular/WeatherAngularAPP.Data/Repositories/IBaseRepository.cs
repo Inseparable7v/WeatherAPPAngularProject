@@ -12,5 +12,6 @@ namespace WeatherAngularAPP.Data.Repositories
         Task InsertAsync(TEntity entity);
         void Update(TEntity entityToUpdate);
         Task SaveAsync();
+        Task SaveAllAsync(ICollection<TEntity> entityCollection);
     }
 }
