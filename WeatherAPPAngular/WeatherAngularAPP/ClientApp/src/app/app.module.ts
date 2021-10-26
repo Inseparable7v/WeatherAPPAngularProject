@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CustomFetchDataComponent } from './customFetch-data/customfetch-data.component';
 import { WeatherDetailComponent } from './detailedWeather-data/weather-detail.component';
+import { weatherGeoLocationDataComponent } from './weatherByGeoLocation-data/weatherGeoLocation-data';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WeatherDetailComponent } from './detailedWeather-data/weather-detail.co
     CounterComponent,
     FetchDataComponent,
     CustomFetchDataComponent,
-    WeatherDetailComponent
+    WeatherDetailComponent,
+    weatherGeoLocationDataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +33,8 @@ import { WeatherDetailComponent } from './detailedWeather-data/weather-detail.co
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'customfetch-data', component: CustomFetchDataComponent },
-      { path: 'weather-detail/:id', component: WeatherDetailComponent }
+      { path: 'weather-detail/:id', component: WeatherDetailComponent },
+      { path: 'weathergeolocation-data', component: weatherGeoLocationDataComponent }
     ])
   ],
   providers: [],

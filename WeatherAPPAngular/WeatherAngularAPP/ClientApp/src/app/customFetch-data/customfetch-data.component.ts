@@ -18,18 +18,6 @@ export class CustomFetchDataComponent {
     this.iconSrc = 'http://openweathermap.org/img/wn/';
   }
 
-  public fetchData(): any {
-    return this.http.get<IForecast>(`https://community-open-weather-map.p.rapidapi.com/forecast?q=${this.cityName}&units=metric`, {
-      headers: {
-        "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-        "x-rapidapi-key": "bb6a7cadeamsh5025cc4c9b84502p197544jsnd35d63e6ea07"
-      }
-    }).subscribe(result => {
-      this.forecasts = result,
-        console.log(result)
-    }), error => { throw Error("Incorrect data") }
-  }
-
   public ShowIconImg(iconImg: string): string {
     return this.iconSrc + iconImg + "@2x.png";
   }
