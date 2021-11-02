@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { IWeatherHistory } from "../fetch-data/IWeatherHistory";
 import { IGeoLocation } from "../weatherByGeoLocation-data/IGeoLocation";
 import { IForecast } from "./IForecast";
 
@@ -33,5 +34,9 @@ export class weatherService {
           "x-rapidapi-key": "bb6a7cadeamsh5025cc4c9b84502p197544jsnd35d63e6ea07"
         }
       });
+  }
+
+  weatherApiCallGetAllHistories(): Observable<IWeatherHistory[]> {
+    return this.http.get<IWeatherHistory[]>('api/weather/GetAll');
   }
 }

@@ -54,10 +54,19 @@ namespace WeatherAngularAPP.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public async Task<IEnumerable<WeatherHistory>> GetAll()
+        [Route("api/weather/GetAll")]
+        public async Task<IEnumerable<WeatherHistoryDTO>> GetAll()
         {
-            return await this.weatherService.GetHistory();
+            var weatherHistories = await this.weatherService.GetHistory();
+            var result = new List<WeatherHistoryDTO>();
+
+            foreach (var weatherHistory in weatherHistories)
+            {
+                result.Add(new WeatherHistoryDTO 
+                { date = weatherHistory.Date.ToString(), temperatureC = weatherHistory.TemperatureC, weatherHistoryId = weatherHistory.WeatherHistoryId });
+            }
+
+            return result;
         }
 
         [HttpPost]

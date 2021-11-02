@@ -18,17 +18,19 @@ export class weatherGeoLocationDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.weatherApiCallByVisitor();
-    this.submit();
   }
 
   weatherApiCallByVisitor(): void {
-    this.weatherService.weatherApiCallGeoLocation()
-      .subscribe(result => { this.geoLocationData = result, console.log(result) })
+    this.weatherService.weatherApiCallGeoLocation().subscribe(geoLocationDataApiCall => {
+      this.geoLocationData = geoLocationDataApiCall;
+
+      this.submit(geoLocationDataApiCall.city.name);
+      //this.weatherService.weatherApiCall(geoLocationDataApiCall.city.name).subscribe(result => { this.forecasts = result }), error => { throw Error("Incorrect data") };
+    });
   }
 
-  submit(): any {
-
-    this.weatherService.weatherApiCall("Paris").subscribe(result => {
+  submit(cityName:string): any {
+    this.weatherService.weatherApiCall(cityName).subscribe(result => {
       this.forecasts = result,
         console.log(result)
     }), error => { throw Error("Incorrect data") };

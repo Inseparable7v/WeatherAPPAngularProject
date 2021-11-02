@@ -19,9 +19,8 @@ namespace WeatherAngularAPP.Data.Models
 
     public class WeatherHistoryDTO
     {
-        public int WeatherHistoryId {  get; set; }
-        public DateTime listdt_txt { get; set; }
-        public int temp { get; set; }
-        public string WeatherLocationName { get; set; }
+        public int weatherHistoryId {  get; set; }
+        public string date { get; set; }
+        public int temperatureC { get; set; }
     }
 }
