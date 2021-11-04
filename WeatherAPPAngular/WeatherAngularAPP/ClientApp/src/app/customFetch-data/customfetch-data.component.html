@@ -1,7 +1,7 @@
 <div align="center">
   <h1 id="tableLabel"> Custom <span>Weather forecast</span></h1>
 
-  <p>This component demonstrates fetching data from the server.</p>
+  <p>This component demonstrates fetching data from the RapidApi.</p>
 </div>
 <div align="center">
   <form>
@@ -26,15 +26,15 @@
       <th></th>
     </tr>
   </thead>
-  <tbody *ngFor="let forecast of forecasts.list | slice:0:10" style="background-color:lightgray; opacity:0.8;">
+  <tbody *ngFor="let forecast of forecasts.list | slice:0:10; index as i" style="background-color:lightgray; opacity:0.8;">
     <tr *ngFor="let weather of forecast.weather" scope="row">
       <td>{{ forecast.dt_txt | date:'EEEE MMM h:mm a' }}</td>
-      <td><a [routerLink]="['/weather-detail', forecast.dt_txt]">{{ forecasts.city.name }}</a></td>
+      <td><a [routerLink]="['/weather-detail', forecast.dt, forecasts.city.name]">{{ forecasts.city.name }}</a></td>
       <td>{{ weather.main }}</td>
       <td>{{ forecast.main.temp | number:'1.0-0' }}</td>
       <td>{{ forecast.main.temp_max | number:'1.0-0' }}</td>
       <td>{{ forecast.main.temp_min | number:'1.0-0' }}</td>
-      <td><img [src]=ShowIconImg(forecast.weather[0].icon) width="55" height="40" /></td>
+      <td><img [src]=ShowIconImg(forecast.weather[0].icon) width="60" height="45" /></td>
     </tr>
   </tbody>
 </table>

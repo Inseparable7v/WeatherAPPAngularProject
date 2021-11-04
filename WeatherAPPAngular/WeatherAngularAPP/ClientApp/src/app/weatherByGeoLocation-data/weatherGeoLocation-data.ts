@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { AfterContentInit, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { IForecast } from "../customFetch-data/IForecast";
 import { weatherService } from "../customFetch-data/weather.Service";
 import { IGeoLocation } from "./IGeoLocation";
@@ -12,6 +12,7 @@ export class weatherGeoLocationDataComponent implements OnInit {
   public geoLocationData: IGeoLocation | undefined;
   public forecasts: IForecast;
   public iconSrc: string;
+
   constructor(private http: HttpClient, private weatherService: weatherService) {
     this.iconSrc = 'http://openweathermap.org/img/wn/';
   }
@@ -25,11 +26,10 @@ export class weatherGeoLocationDataComponent implements OnInit {
       this.geoLocationData = geoLocationDataApiCall;
 
       this.submit(geoLocationDataApiCall.city.name);
-      //this.weatherService.weatherApiCall(geoLocationDataApiCall.city.name).subscribe(result => { this.forecasts = result }), error => { throw Error("Incorrect data") };
     });
   }
 
-  submit(cityName:string): any {
+  submit(cityName: string): void {
     this.weatherService.weatherApiCall(cityName).subscribe(result => {
       this.forecasts = result,
         console.log(result)

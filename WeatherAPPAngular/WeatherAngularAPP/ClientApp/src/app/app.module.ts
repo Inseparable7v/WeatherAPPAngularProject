@@ -33,6 +33,7 @@ import { weatherGeoLocationDataComponent } from './weatherByGeoLocation-data/wea
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'customfetch-data', component: CustomFetchDataComponent },
+      { path: 'weather-detail/:id/:cityName', component: WeatherDetailComponent },
       { path: 'weather-detail/:id', component: WeatherDetailComponent },
       { path: 'weathergeolocation-data', component: weatherGeoLocationDataComponent }
     ])
