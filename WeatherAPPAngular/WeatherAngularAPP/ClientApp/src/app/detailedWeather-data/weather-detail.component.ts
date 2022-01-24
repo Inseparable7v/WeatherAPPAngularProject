@@ -30,10 +30,7 @@ export class WeatherDetailComponent implements OnInit {
     this.cityName = this.routeActive.snapshot.paramMap.get('cityName');
     this.index = Number(this.routeActive.snapshot.paramMap.get('id'));
     this.forecastDetail = JSON.parse(this.storageService.get(this.cityName));
-    //console.log(this.routeActive.snapshot.paramMap.get('cityName'));
-    //console.log(this.index);
     this.forecastDetail.list = this.forecastDetail.list.filter(x => x.dt == this.index);
-    console.log(this.forecastDetail.list)
     this.pageTittle += `: ${this.cityName}`;
   }
 

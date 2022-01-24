@@ -5,9 +5,9 @@
 </div>
 <div align="center">
   <form>
-    <label for="City_Name" >
+    <label for="City_Name">
       <h6>City Name</h6>
-      <input #CityName [(ngModel)]="cityName" type="text" id="City" name="CityName" style="border-radius: 0.3rem 0.4rem;"/>
+      <input #CityName [(ngModel)]="cityName" type="text" id="City" name="CityName" style="border-radius: 0.3rem 0.4rem;" />
     </label>
     <button style="border-radius: 0.3rem 0.4rem; margin-left: 0.5rem; background-color: aliceblue" id="CityName" (click)="submit()">Submit</button>
   </form>
@@ -39,5 +39,6 @@
   </tbody>
 </table>
 <button *ngIf="forecasts" (click)="saveWeather()" class="btn-primary">Save All</button>
+<button *ngIf="forecasts" (click)="getById(2)" class="btn-primary">GetById</button>
 
 

@@ -34,4 +34,8 @@ export class CustomFetchDataComponent {
   saveWeather(): void {
     this.weatherService.saveWeather(this.saveAllApiCall).subscribe();
   }
+
+  getById(id: number): void{
+    this.weatherService.getById(2).subscribe(result => console.log(result));
+  }
 }

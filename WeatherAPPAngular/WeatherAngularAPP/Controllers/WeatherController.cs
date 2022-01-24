@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -7,14 +6,10 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using WeatherAngularAPP.Data.Models;
 using WeatherAngularAPP.Service.Services;
-using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
-using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace WeatherAngularAPP.Controllers
 {
-    [RoutePrefix("")]
-    public class WeatherController : Controller
+	public class WeatherController : ApiController
     {
         private IWeatherService weatherService;
 
@@ -23,7 +18,7 @@ namespace WeatherAngularAPP.Controllers
             this.weatherService = weatherService;
         }
 
-        [HttpPost]
+        [Microsoft.AspNetCore.Mvc.HttpPost]
         public async Task AddHistory(WeatherHistory weatherHistory)
         {
             if (weatherHistory == null) { throw new ArgumentNullException(); }
@@ -31,7 +26,8 @@ namespace WeatherAngularAPP.Controllers
             await this.weatherService.AddHistory(weatherHistory);
         }
 
-        [HttpGet]
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        [Microsoft.AspNetCore.Mvc.Route("api/weather/byid/{id}")]
         public async Task<WeatherHistory> GetHistoryById(int id)
         {
             var historyEntity = await this.weatherService.GetByIdAsync(id);
@@ -53,8 +49,8 @@ namespace WeatherAngularAPP.Controllers
             await this.weatherService.RemoveHistory(id);
         }
 
-        [HttpGet]
-        [Route("api/weather/GetAll")]
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        [Microsoft.AspNetCore.Mvc.Route("api/weather/all")]
         public async Task<IEnumerable<WeatherHistoryDTO>> GetAll()
         {
             var weatherHistories = await this.weatherService.GetHistory();
@@ -62,16 +58,16 @@ namespace WeatherAngularAPP.Controllers
 
             foreach (var weatherHistory in weatherHistories)
             {
-                result.Add(new WeatherHistoryDTO 
+                result.Add(new WeatherHistoryDTO
                 { date = weatherHistory.Date.ToString(), temperatureC = weatherHistory.TemperatureC, weatherHistoryId = weatherHistory.WeatherHistoryId });
             }
 
             return result;
         }
 
-        [HttpPost]
-        [Route("api/weather/SaveAll")]
-        public async Task SaveAll(string save)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("api/weather/save-all")]
+        public async Task SaveAll(string data)
         {
             var weatherLocation = new WeatherLocation() { CityName = "Varna" };
             var entity = new WeatherHistory() { Date = new DateTime(), TemperatureC = 15, WeatherLocation = weatherLocation };

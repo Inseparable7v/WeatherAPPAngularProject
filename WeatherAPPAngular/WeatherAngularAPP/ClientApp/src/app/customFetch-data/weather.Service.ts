@@ -7,14 +7,18 @@ import { IForecast } from "./IForecast";
 
 @Injectable({ providedIn: 'root' })
 export class weatherService {
-  options = { headers: { 'Content-Type': 'application/json' } };
+  options = { headers: { 'Content-Type': 'application/json; charset=UTF-8' } };
 
   constructor(private http: HttpClient) {
 
   }
 
   saveWeather(input: string): Observable<string> {
-    return this.http.post<string>("api/weather/SaveAll", { save: 'Test' }, this.options);
+    return this.http.post<string>("api/weather/save-all", JSON.stringify({data:input}), this.options);
+  }
+
+  getById(id: number): Observable<number> {
+    return this.http.get<number>('api/weather/byid/' + id, this.options);
   }
 
   weatherApiCall(cityName: string): Observable<IForecast> {
@@ -37,6 +41,6 @@ export class weatherService {
   }
 
   weatherApiCallGetAllHistories(): Observable<IWeatherHistory[]> {
-    return this.http.get<IWeatherHistory[]>('api/weather/GetAll');
+    return this.http.get<IWeatherHistory[]>('api/weather/all');
   }
 }
